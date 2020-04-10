@@ -22,7 +22,7 @@ app.post("/repositories", (request, response) => {
     title,
     url,
     techs,
-    like: 0
+    likes: 0
   }
 
   repositories.push(repository);
@@ -40,14 +40,14 @@ app.put("/repositories/:id", (request, response) => {
     return response.status(400).json({ error: 'Repository not found' })
   }
 
-  const { like } = repositories[repositoryIndex];
+  const { likes } = repositories[repositoryIndex];
 
   const repository = {
     id,
     title,
     url,
     techs,
-    like
+    likes
   }
 
   repositories[repositoryIndex] = repository;
@@ -79,14 +79,14 @@ app.post("/repositories/:id/like", (request, response) => {
     return response.status(400).json({ error: "Repository not found" });
   }
   
-  const { title, url, techs, like } = repositories[repositoryIndex]
+  const { title, url, techs, likes } = repositories[repositoryIndex]
 
   repositories[repositoryIndex] = {
     id,
     title,
     url,
     techs,
-    like: like + 1
+    likes: likes + 1
   }
 
   const repository = repositories[repositoryIndex];
@@ -94,8 +94,8 @@ app.post("/repositories/:id/like", (request, response) => {
   return response.json(repository);
 });
 
-app.listen(3334, () => {
-  console.log('Back-end started')
-});
+// app.listen(3333, () => {
+//   console.log('Back-end started')
+// });
 
 module.exports = app;
